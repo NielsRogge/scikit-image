@@ -145,6 +145,9 @@ def resize(image, output_shape, order=None, mode='reflect', cval=0, clip=True,
     input_shape = image.shape
     input_type = image.dtype
 
+    print("Input shape:", input_shape)
+    print("Output shape:", output_shape)
+
     if input_type == np.float16:
         image = image.astype(np.float32)
 
@@ -164,6 +167,7 @@ def resize(image, output_shape, order=None, mode='reflect', cval=0, clip=True,
 
     # Translate modes used by np.pad to those used by scipy.ndimage
     ndi_mode = _to_ndimage_mode(mode)
+    print("NDI mode:", ndi_mode)
     if anti_aliasing:
         if anti_aliasing_sigma is None:
             anti_aliasing_sigma = np.maximum(0, (factors - 1) / 2)
